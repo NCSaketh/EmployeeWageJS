@@ -165,3 +165,19 @@ try{
 }catch(exception){
     console.error(exception);
 }
+
+// Email Validation: Format should have '@bridgelabz' mandatoryt part
+try{
+    employeePayrollData2.email = "abc.xyz@co";
+    process.stdout.write("Email Updated\n");
+}catch(exception){
+    console.error(exception);
+}
+
+// Email Validation: Format should have '.co' mandatory part
+try{
+    employeePayrollData2.email = "abc.xyz@bridgelabz";
+    process.stdout.write("Email Updated\n");
+}catch(exception){
+    console.error(exception);
+}
