@@ -48,6 +48,12 @@ class EmployeePayrollData {
         if(pinFirstCharRegex.test(pin))
             this._pin = pin;
         else throw "Pin should not have special character or alphabet in the beginning";
+
+        // Pin should not have special character or alphabet in the end
+        let pinLastCharRegex = RegExp("^.*[0-9]{1}$");
+        if(pinLastCharRegex.test(pin))
+            this._pin = pin;
+        else throw "Pin should not have special character or alphabet in the end";
         
         // Pin length should be 6
         let pinLengthRegex = RegExp("^[0-9]{6}$")
@@ -116,6 +122,13 @@ try{
 // Pin Validation: First Character should not be an alphabet or special character
 try{
     employeePayrollData2.pin = "A1124";
+}catch(exception){
+    console.error(exception);
+}
+
+// Pin Validation: Last Character should not be alphabet or special character
+try{
+    employeePayrollData2.pin = "10034$";
 }catch(exception){
     console.error(exception);
 }
