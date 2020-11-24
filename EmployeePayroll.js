@@ -48,7 +48,7 @@ class EmployeePayrollData {
         if(pinFirstCharRegex.test(pin))
             this._pin = pin;
         else throw "Pin should not have special character or alphabet in the beginning";
-
+        
         // Pin should not have special character or alphabet in the end
         let pinLastCharRegex = RegExp("^.*[0-9]{1}$");
         if(pinLastCharRegex.test(pin))
@@ -61,10 +61,9 @@ class EmployeePayrollData {
             this._pin = pin;
         else throw "Pin can only have 6 digits and spaces";
     }
-
     set email(email) {
         // Email should be of the format abc(.xyz)@bridgelabz.co(.in)
-        let emailFormatRegex = RegExp("^[a-zA-Z]+(\\.[a-zA-Z]+){0,1}[@]{1}[a-zA-Z]+\\.[a-zA-Z]+(\\.[a-zA-Z]+){0,1}")
+        let emailFormatRegex = RegExp("^[a-zA-Z]+(\\.[a-zA-Z_+-]+){0,1}[@]{1}[a-zA-Z]+\\.[a-zA-Z]+(\\.[a-zA-Z]+){0,1}")
         if(emailFormatRegex.test(email))
             this._email = email;
         else 
@@ -128,16 +127,16 @@ try{
     console.error(exception);
 }
 
-// Pin Validation: First Character should not be an alphabet or special character
+// Pin Validation: First Character should not be alphabet or special character
 try{
-    employeePayrollData2.pin = "A1124";
+    employeePayrollData2.pin = "A2334";
 }catch(exception){
     console.error(exception);
 }
 
 // Pin Validation: Last Character should not be alphabet or special character
 try{
-    employeePayrollData2.pin = "10034$";
+    employeePayrollData2.pin = "12334$";
 }catch(exception){
     console.error(exception);
 }
@@ -145,7 +144,7 @@ try{
 // Pin Validation: Can have spaces with six digits
 try{
     employeePayrollData2.pin = "1 23  4 56";
-    process.stdout.write(employeePayrollData.toString()+"\n");
+    process.stdout.write("Pin Updated\n");
 }catch(exception){
     console.error(exception);
 }
@@ -153,14 +152,6 @@ try{
 // Email Validation: Format should be abc(.xyz)@bridgelabz.co(.in)
 try{
     employeePayrollData2.email = "abc.xyz@bridgelabz.co.in";
-    process.stdout.write("Email Updated\n");
-}catch(exception){
-    console.error(exception);
-}
-
-// Email Validation: Format should have '@bridgelabz' compulsary part
-try{
-    employeePayrollData2.email = "abc.xyz@co";
     process.stdout.write("Email Updated\n");
 }catch(exception){
     console.error(exception);
@@ -177,6 +168,14 @@ try{
 // Email Validation: Format should have '.co' mandatory part
 try{
     employeePayrollData2.email = "abc.xyz@bridgelabz";
+    process.stdout.write("Email Updated\n");
+}catch(exception){
+    console.error(exception);
+}
+
+// Email Validation: Format can have '.xyz' part with _, -, +
+try{
+    employeePayrollData2.email = "abc.x*yz@bridgelabz";
     process.stdout.write("Email Updated\n");
 }catch(exception){
     console.error(exception);
