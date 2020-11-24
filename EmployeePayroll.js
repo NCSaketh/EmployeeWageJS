@@ -180,3 +180,11 @@ try{
 }catch(exception){
     console.error(exception);
 }
+
+// Email Validation: Last optional part should have two characters
+try{
+    employeePayrollData2.email = "abc@bridgelabz.co.fg";
+    process.stdout.write("Email Updated\n");
+}catch(exception){
+    console.error(exception);
+}
