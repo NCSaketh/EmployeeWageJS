@@ -55,11 +55,11 @@ class EmployeePayrollData {
             this._pin = pin;
         else throw "Pin should not have special character or alphabet in the end";
         
-        // Pin length should be 6
-        let pinLengthRegex = RegExp("^[0-9]{6}$")
-        if(pinLengthRegex.test(pin))
+        // Pin can have 6 digits and spaces
+        let pinIgnoreSpacesRegex = RegExp("^(\\s*[0-9]{1}\\s*){6}$")
+        if(pinIgnoreSpacesRegex.test(pin))
             this._pin = pin;
-        else throw "Pin should have 6 digits";
+        else throw "Pin can only have 6 digits and spaces";
     }
 
     toString() {
@@ -129,6 +129,14 @@ try{
 // Pin Validation: Last Character should not be alphabet or special character
 try{
     employeePayrollData2.pin = "10034$";
+}catch(exception){
+    console.error(exception);
+}
+
+// Pin Validation: Can have spaces with six digits
+try{
+    employeePayrollData2.pin = "1 23  4 56";
+    process.stdout.write(employeePayrollData.toString()+"\n");
 }catch(exception){
     console.error(exception);
 }
