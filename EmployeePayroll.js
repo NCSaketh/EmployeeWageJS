@@ -62,6 +62,15 @@ class EmployeePayrollData {
         else throw "Pin can only have 6 digits and spaces";
     }
 
+    set email(email) {
+        // Email should be of the format abc(.xyz)@bridgelabz.co(.in)
+        let emailFormatRegex = RegExp("^[a-zA-Z]+(\\.[a-zA-Z]+){0,1}[@]{1}[a-zA-Z]+\\.[a-zA-Z]+(\\.[a-zA-Z]+){0,1}")
+        if(emailFormatRegex.test(email))
+            this._email = email;
+        else 
+        throw "Email should be of the format abc(.xyz)@bridgelabz.co(.in)"
+    }
+
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric'}
         const empDate = this.startDate === undefined ? "undefined" 
@@ -137,6 +146,14 @@ try{
 try{
     employeePayrollData2.pin = "1 23  4 56";
     process.stdout.write(employeePayrollData.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+}
+
+// Email Validation: Format should be abc(.xyz)@bridgelabz.co(.in)
+try{
+    employeePayrollData2.email = "abc.xyz@bridgelabz.co.in";
+    process.stdout.write("Email Updated\n");
 }catch(exception){
     console.error(exception);
 }
